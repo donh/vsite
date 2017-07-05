@@ -1,3 +1,5 @@
+// export {login, session, token} from './attestation';
+export claim from './claim';
 export loadAuth from './loadAuth';
 export loadInfo from './loadInfo';
 export {login, session, token} from './login';
