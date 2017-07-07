@@ -1,91 +1,76 @@
 import fs from 'fs';
 import {TokenSigner} from 'jsontokens';
+import {decodeToken} from 'jsontokens';
 import io from 'socket.io-client';
 import superagent from 'superagent';
 
 const config = JSON.parse(fs.readFileSync(__dirname + '/../../cfg.json', 'utf-8'));
 
-export default function login(req) {
-  const user = {
-    name: req.body.name
-  };
-  req.session.user = user;
-  return Promise.resolve(user);
-}
-
-export function session(req) {
+export default function attestation(req) {
   return new Promise((resolve, reject) => {
-    const {socketToken} = req.body;
-    console.log('socketToken =', socketToken);
-    console.log('config.socket =', config.socket);
-    const socket = io(config.server, {path: config.socket});
-    socket.on('connect', () => {
-      console.log('connect');
-      const loginRequestToken = {
-        token: socketToken
-      };
-      socket.emit('connection', JSON.stringify(loginRequestToken), (data) => {
-        console.log('ACK from server wtih data: ', data);
-      });
-    });
-    socket.on(socketToken, (data) => {
-      console.log('event data =', data);
-      socket.disconnect(true);
-      const {error, login, user} = data.result;
-      if (!login) {
-        reject('Login failed.');
-      } else if (error.length) {
-        reject(error);
-      } else {
-        resolve(user);
-      }
-    });
-    socket.on('error', (err) => {
-      console.log('error err =', err);
-      reject(err);
-    });
-    socket.on('disconnect', () => {
-      console.log('disconnect');
-    });
-  });
-}
-
-export function token(req) {
-  console.log('POST /login/token   config.token =', config.token);
-  return new Promise((resolve, reject) => {
-    const now = Math.floor(new Date().getTime() / 1000);
-    const expired = now + (30 * 86400);
-    const tokenPayload = {
-      iss: config.iss,
-      aud: config.aud,
-      iat: now,
-      exp: expired,
-      sub: 'login request',
-      context: {
-        clientID: config.clientID,
-        clientName: config.clientName,
-        clientPublicKey: config.publicKey,
-        scope: 'name,phone,publicKey,proxy,controller,recovery,city'
-      }
-    };
-    const rawPrivateKey = config.privateKey;
-    const token = new TokenSigner('ES256k', rawPrivateKey).sign(tokenPayload);
-    const payload = {
-      clientJWT: token
-    };
+    const URL = config.getClaims + '?page=2';
+    console.log('URL =', URL);
     superagent
-      .post(config.token)
-      .send(payload)
-      .set('Accept', 'application/json')
-      .end((err, res) => {
-        if (err) {
-          console.log('superagent err =', err);
-          reject(err);
-        } else {
-          const {result, time} = res.body;
-          console.log('superagent result =', result);
-          resolve(result);
-        }
-      });
+        .get(config.getClaims + '?page=2')
+        .end((err, res) => {
+          if (err) {
+            console.log('superagent err =', err);
+            reject(err);
+          } else {
+            const resp = JSON.parse(res.text);
+            // const {count, currentPage, pages, result, time} = resp;
+            const {result} = resp;
+            // const claims = [];
+
+            const claims = result.map((item, key) => {
+              console.log('item =', item);
+              const claim = {};
+              if (item.claim.length) {
+                // const claim = decodeToken(item.claim)
+                // console.log('claim =', claim);
+                const {payload} = decodeToken(item.claim)
+                // console.log('payload =', payload);
+                const {context} = payload
+                const {authority, expiryDate, gender, ID, issueDate, name, userProxy} = context
+                claim.name = name;
+                claim.ID = ID;
+                claim.gender = gender;
+                claim.issueDate = issueDate;
+                claim.expiryDate = expiryDate;
+                claim.authority = authority;
+                claim.proxy = userProxy;
+                console.log('claim =', claim);
+                // console.log('context =', context);
+              }
+              return claim;
+            })
+            console.log('claims =', claims);
+            resp.result = claims;
+            // console.log('superagent pages =', pages);
+            resolve(resp);
+          }
+        });
   });
 }
+
+// export function attestationGetClaims(req) {
+//   console.log('GET /attestationGetClaims   config.getClaims =', config.getClaims);
+//   return new Promise((resolve, reject) => {
+//     const URL = config.getClaims + '?page=2';
+//     console.log('URL =', URL);
+//     superagent
+//       .get(config.getClaims + '?page=2')
+//       .end((err, res) => {
+//         if (err) {
+//           console.log('superagent err =', err);
+//           reject(err);
+//         } else {
+//           console.log('superagent res =', res);
+//           console.log('superagent res.body =', res.body);
+//           const {result, time} = res.body;
+//           console.log('superagent result =', result);
+//           resolve(result);
+//         }
+//       });
+//   });
+// }

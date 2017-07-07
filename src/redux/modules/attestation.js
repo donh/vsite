@@ -4,11 +4,15 @@ const LOAD_FAIL = 'vchain/attestation/LOAD_FAIL';
 const SAVE = 'vchain/attestation/SAVE';
 const SAVE_SUCCESS = 'vchain/attestation/SAVE_SUCCESS';
 const SAVE_FAIL = 'vchain/attestation/SAVE_FAIL';
+const GET_CLAIMS = 'vchain/attestation/GET_CLAIMS';
+const GET_CLAIMS_SUCCESS = 'vchain/attestation/GET_CLAIMS_SUCCESS';
+const GET_CLAIMS_FAIL = 'vchain/attestation/GET_CLAIMS_FAIL';
 
 const initialState = {
-  loaded: false,
-  saveError: {},
-  submission: null
+  claims: [],
+  countOfClaims: 0,
+  currentPage: 1,
+  pages: 1
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -57,30 +61,43 @@ export default function reducer(state = initialState, action = {}) {
           [action.id]: action.error
         }
       } : state;
+    case GET_CLAIMS:
+      console.log('attestation reducer GET_CLAIMS');
+      return state; // 'saving' flag handled by redux-form
+    case GET_CLAIMS_SUCCESS:
+      console.log('attestation reducer GET_CLAIMS_SUCCESS');
+      console.log('SAVE_SUCCESS action =', action);
+      console.log('SAVE_SUCCESS action.result =', action.result);
+      const {currentPage, pages, result, total} = action.result;
+      return {
+        ...state,
+        claims: result,
+        currentPage: currentPage,
+        pages: pages,
+        countOfClaims: total,
+        saveError: {
+          ...state.saveError,
+          [action.id]: null
+        }
+      };
+    case GET_CLAIMS_FAIL:
+      console.log('attestation reducer GET_CLAIMS_FAIL');
+      return typeof action.error === 'string' ? {
+        ...state,
+        saveError: {
+          ...state.saveError,
+          [action.id]: action.error
+        }
+      } : state;
     default:
       return state;
   }
 }
 
-export function isLoaded(globalState) {
-  return globalState.attestation && globalState.attestation.loaded;
-}
-
-export function load() {
-  console.log('ATTESTATION load()');
+export function getPendingClaims() {
+  console.log('getPendingClaims()');
   return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/attestation/load/param1/param2') // params not used, just shown as demonstration
-  };
-}
-
-export function save(attestation) {
-  console.log('ATTESTATION save(attestation) =', attestation);
-  return {
-    types: [SAVE, SAVE_SUCCESS, SAVE_FAIL],
-    id: attestation.id,
-    promise: (client) => client.post('/attestation/update', {
-      data: attestation
-    })
+    types: [GET_CLAIMS, GET_CLAIMS_SUCCESS, GET_CLAIMS_FAIL],
+    promise: (client) => client.get('/attestation')
   };
 }

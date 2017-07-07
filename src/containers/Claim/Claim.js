@@ -14,7 +14,7 @@ export default class Cliam extends Component {
   static propTypes = {
     JWT: PropTypes.string,
     sendClaimRequest: PropTypes.func.isRequired
-  }
+  };
   componentDidMount() {
     console.log('componentDidMount()');
     this.props.sendClaimRequest();

@@ -60,12 +60,6 @@ export default class App extends Component {
   render() {
     const {user} = this.props;
     const styles = require('./App.scss');
-              // <LinkContainer to="/attestation">
-              //   <NavItem eventKey={5}>Attestation</NavItem>
-              // </LinkContainer>
-              // <LinkContainer to="/claim">
-              //   <NavItem eventKey={4}>Claim</NavItem>
-              // </LinkContainer>
     return (
       <div className={styles.app}>
         <Helmet {...config.app.head}/>
@@ -95,6 +89,9 @@ export default class App extends Component {
               </LinkContainer>}
               <LinkContainer to="/claim">
                 <NavItem eventKey={4}>Claim</NavItem>
+              </LinkContainer>
+              <LinkContainer to="/attestation">
+                <NavItem eventKey={5}>Attestation</NavItem>
               </LinkContainer>
               <LinkContainer to="/pagination">
                 <NavItem eventKey={6}>Pagination</NavItem>

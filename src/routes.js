@@ -4,7 +4,7 @@ import { isLoaded as isAuthLoaded, load as loadAuth } from 'redux/modules/auth';
 import {
     App,
     About,
-    // Attestation,
+    Attestation,
     Chat,
     Claim,
     Home,
@@ -37,7 +37,6 @@ export default (store) => {
   /**
    * Please keep routes in alphabetical order
    */
-// <Route path="attestation" component={Attestation}/>
   return (
     <Route path="/" component={App}>
       { /* Home (main) route */ }
@@ -51,6 +50,7 @@ export default (store) => {
 
       { /* Routes */ }
       <Route path="about" component={About}/>
+      <Route path="attestation" component={Attestation}/>
       <Route path="claim" component={Claim}/>
       <Route path="login" component={Login}/>
       <Route path="pagination" component={Pagination}/>
