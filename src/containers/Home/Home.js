@@ -80,7 +80,10 @@ export default class Home extends Component {
   render() {
     const {username, UTXO} = this.state;
     const styles = require('./Home.scss');
-    const logoImage = require('./logo.png');
+    // const logoImage = require('./logo.png');
+    // const logoImage = require('../../../../static/logo.png');
+    const logoImage = require('../../../static/logo.png');
+    // const logoImage = require('/logo.png');
     return (
       <div className={styles.home}>
         <Helmet title="Home"/>

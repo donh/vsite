@@ -1,10 +1,4 @@
 import {Pagination} from 'components';
-import React, {Component, PropTypes} from 'react';
-import Helmet from 'react-helmet';
-import {connect} from 'react-redux';
-import * as attestationActions from 'redux/modules/attestation';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
 import {
   Table,
   TableBody,
@@ -13,6 +7,14 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import React, {Component, PropTypes} from 'react';
+import Helmet from 'react-helmet';
+import {connect} from 'react-redux';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import * as attestationActions from 'redux/modules/attestation';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+injectTapEventPlugin();
 
 @connect(
   state => ({
@@ -30,44 +32,32 @@ export default class Attestation extends Component {
     pages: PropTypes.number,
     getPendingClaims: PropTypes.func.isRequired
   };
+  // componentWillMount() {
+  //   injectTapEventPlugin();
+  // }
   componentDidMount() {
-    // console.log('componentDidMount()');
-    this.props.getPendingClaims();
-    // console.log('this.props.getPendingClaims() =', this.props.getPendingClaims());
-  }
-  // handlePagination: (page) => {
-  handlePagination(page) {
-    console.log('handlePagination() page =', page);
-    // const {currentPage} = OWL.state.apollo
-    // if (page !== currentPage) {
-    //   OWL.actions.setApolloLoading()
-    //   OWL.actions.clearApolloChartsData()
-    //   OWL.actions.setApolloCurrentPage(page)
-    //   OWL.actions.setApolloURL()
-    //   OWL.actions.setApolloPaginatedHostnames()
-    //   OWL.actions.getApolloChartsData()
-    // }
+    this.props.getPendingClaims(1);
   }
   render() {
     const {
       claims,
-      countOfClaims,
+      // countOfClaims,
       currentPage,
+      getPendingClaims,
       pages
     } = this.props;
-    // console.log('claims =', claims);
-    console.log('countOfClaims =', countOfClaims);
-    console.log('currentPage =', currentPage);
-    console.log('pages =', pages);
+    // console.log('countOfClaims =', countOfClaims);
+    // console.log('currentPage =', currentPage);
+    // console.log('pages =', pages);
     const styles = require('./Attestation.scss');
     const style = {
       margin: 12
     };
-    // const rows = claims.map((claim, key) => {
-    const rows = claims.map((claim) => {
+    // const rows = claims.map((claim) => {
+    const rows = claims.map((claim, key) => {
       const {name, ID, gender, authority, issueDate, expiryDate} = claim;
       return (
-        <TableRow>
+        <TableRow key={key}>
           <TableRowColumn>{name}</TableRowColumn>
           <TableRowColumn>{ID}</TableRowColumn>
           <TableRowColumn>{gender}</TableRowColumn>
@@ -80,13 +70,12 @@ export default class Attestation extends Component {
         </TableRow>
       );
     });
-// <Pagination />
     return (
       <div className={styles.attestation + ' container'}>
         <h1>Attestation</h1>
         <Helmet title="Attestation"/>
         <Pagination initialPage={0} currentPage={currentPage}
-         total={pages} onPageChange={this.handlePagination} />
+         total={pages} onPageChange={getPendingClaims} />
 
         <MuiThemeProvider>
           <Table>

@@ -3,7 +3,7 @@
   "description": "vChain demo site",
   "author": "Don Hsieh <don@cepave.com> (http://github.com/donh)",
   "license": "MIT",
-  "version": "0.9.0",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/donh/vsite"
@@ -123,15 +123,17 @@
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
     "qr-image": "^3.2.0",
-    "react": "15.3.0",
-    "react-bootstrap": "^0.28.1",
-    "react-dom": "15.0.0",
+    "react": "15.4.0",
+    "react-a11y": "^0.3.4",
+    "react-bootstrap": "^0.31.0",
+    "react-dom": "15.4.0",
     "react-helmet": "^2.2.0",
     "react-inline-css": "^2.0.0",
     "react-redux": "^4.0.0",
-    "react-router": "2.0.0",
+    "react-router": "^3.0.0",
     "react-router-bootstrap": "^0.20.1",
     "react-router-redux": "^4.0.0",
+    "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.0.4",
     "redux-async-connect": "^1.0.0-rc2",
     "redux-form": "^3.0.12",
@@ -147,7 +149,7 @@
     "violet-paginator": "^1.8.1",
     "warning": "^2.1.0",
     "web3": "^0.19.1",
-    "webpack-isomorphic-tools": "^2.2.18"
+    "webpack-isomorphic-tools": "^3.0.3"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",
@@ -181,7 +183,6 @@
     "node-sass": "^3.4.2",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
-    "react-a11y": "^0.2.6",
     "react-addons-test-utils": "0.14.8",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.1",

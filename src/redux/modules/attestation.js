@@ -40,7 +40,7 @@ export default function reducer(state = initialState, action = {}) {
       };
     case SAVE:
       console.log('attestation reducer SAVE');
-      return state; // 'saving' flag handled by redux-form
+      return state;
     case SAVE_SUCCESS:
       console.log('attestation reducer SAVE_SUCCESS');
       console.log('SAVE_SUCCESS action.result =', action.result);
@@ -63,7 +63,7 @@ export default function reducer(state = initialState, action = {}) {
       } : state;
     case GET_CLAIMS:
       console.log('attestation reducer GET_CLAIMS');
-      return state; // 'saving' flag handled by redux-form
+      return state;
     case GET_CLAIMS_SUCCESS:
       console.log('attestation reducer GET_CLAIMS_SUCCESS');
       console.log('SAVE_SUCCESS action =', action);
@@ -94,10 +94,10 @@ export default function reducer(state = initialState, action = {}) {
   }
 }
 
-export function getPendingClaims() {
-  console.log('getPendingClaims()');
+export function getPendingClaims(page) {
+  console.log('getPendingClaims(page) =', page);
   return {
     types: [GET_CLAIMS, GET_CLAIMS_SUCCESS, GET_CLAIMS_FAIL],
-    promise: (client) => client.get('/attestation')
+    promise: (client) => client.get('/attestation?page=' + page)
   };
 }
