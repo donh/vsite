@@ -23,7 +23,7 @@ export default function attestation(req) {
             // const claims = [];
 
             const claims = result.map((item, key) => {
-              console.log('item =', item);
+              // console.log('item =', item);
               const claim = {};
               if (item.claim.length) {
                 // const claim = decodeToken(item.claim)
@@ -39,12 +39,12 @@ export default function attestation(req) {
                 claim.expiryDate = expiryDate;
                 claim.authority = authority;
                 claim.proxy = userProxy;
-                console.log('claim =', claim);
+                // console.log('claim =', claim);
                 // console.log('context =', context);
               }
               return claim;
             })
-            console.log('claims =', claims);
+            // console.log('claims =', claims);
             resp.result = claims;
             // console.log('superagent pages =', pages);
             resolve(resp);
