@@ -9,16 +9,11 @@ class PaginationItem extends Component {
   }
   render() {
     const {className, display, page, onPageChange} = this.props;
-    // console.log('display =', display);
-    // console.log('typeof =', typeof display);
     const styles = require('components/Pagination/Pagination.scss');
     let paginationClass = styles._pagination__page;
     if (className && className !== 'undefined') {
-      // console.log('className =', className);
-      // console.log('typeof className =', typeof className);
       const str = `_pagination__page--${className}`;
       paginationClass = `${paginationClass} ${styles[str]}`;
-      // console.log('paginationClass =', paginationClass);
     }
     return (
       <li className={paginationClass}
@@ -69,9 +64,6 @@ export default class Pagination extends Component {
     const showFirstLast = true;
     const showPrevNext = true;
     const paginationItem = (className, page, text) => {
-      // console.log('className =', className);
-      // console.log('page =', page);
-      // console.log('text =', text);
       return (
         <PaginationItem className={className}
          display={text.toString()} key={text} page={page}
