@@ -1,47 +1,41 @@
 import React, {Component, PropTypes} from 'react';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {load} from 'redux/modules/info';
 
-@connect(
-    // state => ({info: state.info.data}),
-    state => ({info: state.loading.data}),
-    dispatch => bindActionCreators({load}, dispatch))
 export default class Loading extends Component {
   static propTypes = {
-    info: PropTypes.object,
-    load: PropTypes.func.isRequired
+    show: PropTypes.bool.isRequired
   }
 
   render() {
-    const {info, load} = this.props; // eslint-disable-line no-shadow
-    const styles = require('./Lodaing.scss');
-      // <div className={styles.infoBar + ' well'}>
-      //   <div className="container">
-      //     This is an info bar
-      //     {' '}
-      //     <strong>{info ? info.message : 'no info!'}</strong>
-      //     <span className={styles.time}>{info && new Date(info.time).toString()}</span>
-      //     <button className="btn btn-primary" onClick={load}>Reload from server</button>
-      //   </div>
-      // </div>
+    const styles = require('./Loading.scss');
+    const style = {
+      display: this.props.show ? 'block' : 'none'
+    };
+    const catStyle = {
+      display: this.props.show ? 'block' : 'none',
+      position: 'absolute',
+      margin: 'auto',
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    };
     return (
-      <div>
-        <div className="loading-cat">
-          <div className="body"></div>
-          <div className="head">
-            <div className="face"></div>
+      <div className={styles.loadingContainer} style={style}>
+        <div className={styles.loadingCat}>
+          <div className={styles.body}></div>
+          <div className={styles.head}>
+            <div className={styles.face}></div>
           </div>
-          <div className="foot">
-            <div className="tummy-end"></div>
-            <div className="bottom"></div>
-            <div className="legs left"></div>
-            <div className="legs right"></div>
+          <div className={styles.foot}>
+            <div className={styles.tummyEnd}></div>
+            <div className={styles.bottom}></div>
+            <div className={`$(styles.legs} $(styles.left}`}></div>
+            <div className={`$(styles.legs} $(styles.right}`}></div>
           </div>
-          <div className="hands left"></div>
-          <div className="hands right"></div>
+          <div className={`$(styles.hands} $(styles.left}`}></div>
+          <div className={`$(styles.hands} $(styles.right}`}></div>
         </div>
-        <img alt="" src="https://media.giphy.com/media/3o7TKtbdY5oZuiyucg/giphy.gif" />
+        <img className={styles.center} style={catStyle} src="/cat.gif" alt="Loading data..." />
       </div>
     );
   }
