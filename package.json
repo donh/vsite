@@ -90,6 +90,7 @@
     }
   },
   "dependencies": {
+    "async": "^2.5.0",
     "babel-core": "^6.5.2",
     "babel-loader": "^6.2.1",
     "babel-plugin-add-module-exports": "^0.1.2",
@@ -107,6 +108,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "file-loader": "^0.8.5",
+    "history": "^3.2.1",
     "hoist-non-react-statics": "^1.0.3",
     "http-proxy": "^1.12.0",
     "immutable": "^3.8.1",
@@ -120,9 +122,11 @@
     "mnid": "^0.1.1",
     "mobile-detect": "^1.3.6",
     "multireducer": "^2.0.0",
+    "nets": "^3.2.0",
     "piping": "^0.3.0",
     "pretty-error": "^1.2.0",
     "qr-image": "^3.2.0",
+    "qs": "^6.5.0",
     "react": "15.4.0",
     "react-a11y": "^0.3.4",
     "react-bootstrap": "^0.31.0",
