@@ -3,6 +3,7 @@ const CLAIM_TOKEN_SUCCESS = 'vchain/claim/CLAIM_TOKEN_SUCCESS';
 const CLAIM_TOKEN_FAIL = 'vchain/claim/CLAIM_TOKEN_FAIL';
 
 const initialState = {
+  loading: true,
   JWT: ''
 };
 
@@ -17,13 +18,15 @@ export default function reducer(state = initialState, action = {}) {
       console.log('CLAIM_TOKEN_SUCCESS action =', action);
       return {
         ...state,
+        loading: false,
         JWT: action.result.JWT,
         token: action.result.token
       };
     case CLAIM_TOKEN_FAIL:
       console.log('CLAIM_TOKEN_FAIL action =', action);
       return {
-        ...state
+        ...state,
+        loading: false
       };
     default:
       return state;

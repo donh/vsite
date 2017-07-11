@@ -71,9 +71,9 @@ export default class Pagination extends Component {
       );
     };
     const pages = this.pageRange(currentPage, total, pagesToDisplay)
-      .map((p) => {
-        const isCurrentPage = currentPage === p;
-        return paginationItem(isCurrentPage ? 'selected' : '', p, p);
+      .map((page) => {
+        const isCurrentPage = currentPage === page;
+        return paginationItem(isCurrentPage ? 'selected' : '', page, page);
       }
     );
     const firstPage = showFirstLast && currentPage !== 1 ?

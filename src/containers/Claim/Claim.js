@@ -1,3 +1,4 @@
+import {Loading} from 'components';
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Helmet from 'react-helmet';
@@ -6,23 +7,22 @@ import { QRUtil } from '../../../lib/index';
 
 @connect(
   state => ({
+    loading: state.claim.loading,
     JWT: state.claim.JWT
   }),
   claimActions)
 
 export default class Cliam extends Component {
   static propTypes = {
+    loading: PropTypes.bool,
     JWT: PropTypes.string,
     sendClaimRequest: PropTypes.func.isRequired
   };
   componentDidMount() {
-    console.log('componentDidMount()');
     this.props.sendClaimRequest();
-    console.log('this.props.sendClaimRequest() =', this.props.sendClaimRequest());
   }
   render() {
-    const {JWT} = this.props;
-    console.log('render() JWT =', JWT);
+    const {loading, JWT} = this.props;
     const QR = QRUtil.getQRDataURI(JWT);
     return (
       <div className="container">
@@ -31,6 +31,7 @@ export default class Cliam extends Component {
         <div>
           <img src={QR} />
         </div>
+        <Loading show={loading} />
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import {Pagination} from 'components';
+import {Loading, Pagination} from 'components';
 import {
   Table,
   TableBody,
@@ -13,24 +13,28 @@ import {connect} from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import * as attestationActions from 'redux/modules/attestation';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
 injectTapEventPlugin();
 
 @connect(
   state => ({
+    attested: state.attestation.attested,
     claims: state.attestation.claims,
     countOfClaims: state.attestation.countOfClaims,
     currentPage: state.attestation.currentPage,
+    loading: state.attestation.loading,
     pages: state.attestation.pages
   }),
   attestationActions)
 export default class Attestation extends Component {
   static propTypes = {
+    attest: PropTypes.func.isRequired,
+    attested: PropTypes.bool,
     claims: PropTypes.array,
     countOfClaims: PropTypes.number,
     currentPage: PropTypes.number,
-    pages: PropTypes.number,
-    getPendingClaims: PropTypes.func.isRequired
+    getPendingClaims: PropTypes.func.isRequired,
+    loading: PropTypes.bool,
+    pages: PropTypes.number
   };
   // componentWillMount() {
   //   injectTapEventPlugin();
@@ -38,22 +42,23 @@ export default class Attestation extends Component {
   componentDidMount() {
     this.props.getPendingClaims(1);
   }
+  approve = (claim, key) => {
+    this.props.attest(claim, 'APPROVED', key);
+  }
+  reject(claim, key) {
+    this.props.attest(claim, 'REJECTED', key);
+  }
   render() {
     const {
       claims,
       // countOfClaims,
       currentPage,
       getPendingClaims,
+      loading,
       pages
     } = this.props;
-    // console.log('countOfClaims =', countOfClaims);
-    // console.log('currentPage =', currentPage);
-    // console.log('pages =', pages);
     const styles = require('./Attestation.scss');
-    const style = {
-      margin: 12
-    };
-    // const rows = claims.map((claim) => {
+    console.log('claims =', claims);
     const rows = claims.map((claim, key) => {
       const {name, ID, gender, authority, issueDate, expiryDate} = claim;
       return (
@@ -65,7 +70,8 @@ export default class Attestation extends Component {
           <TableRowColumn>{issueDate}</TableRowColumn>
           <TableRowColumn>{expiryDate}</TableRowColumn>
           <TableRowColumn>
-            <RaisedButton label="APPROVE" primary={true} style={style} />
+            <div className={styles.buttonApprove} onClick={() => this.approve(claim, key)}>Yes</div>
+            <div className={styles.buttonReject} onClick={() => this.reject(claim, key)}>No</div>
           </TableRowColumn>
         </TableRow>
       );
@@ -95,6 +101,7 @@ export default class Attestation extends Component {
             </TableBody>
           </Table>
         </MuiThemeProvider>
+        <Loading show={loading} />
       </div>
     );
   }

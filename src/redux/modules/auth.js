@@ -16,6 +16,7 @@ const SESSION_FAIL = 'vchain/auth/SESSION_FAIL';
 
 const initialState = {
   loaded: false,
+  loading: true,
   loggingIn: false,
   JWT: '',
   token: null,
@@ -32,14 +33,12 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_SUCCESS:
       return {
         ...state,
-        loading: false,
         loaded: true,
         user: action.result
       };
     case LOAD_FAIL:
       return {
         ...state,
-        loading: false,
         loaded: false,
         error: action.error
       };
@@ -87,13 +86,15 @@ export default function reducer(state = initialState, action = {}) {
       console.log('TOKEN_SUCCESS action =', action);
       return {
         ...state,
+        loading: false,
         JWT: action.result.JWT,
         token: action.result.token
       };
     case TOKEN_FAIL:
       console.log('TOKEN_FAIL action =', action);
       return {
-        ...state
+        ...state,
+        loading: false
       };
     case SESSION:
       return {
@@ -103,12 +104,14 @@ export default function reducer(state = initialState, action = {}) {
       console.log('SESSION_SUCCESS action =', action);
       return {
         ...state,
+        loading: false,
         loggingIn: true,
         user: action.result
       };
     case SESSION_FAIL:
       return {
         ...state,
+        loading: false,
         loggingIn: false,
         user: null
       };

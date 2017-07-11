@@ -32,4 +32,25 @@
       }
     }
   }
+  .buttonApprove {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 6px;
+    color: white;
+    background: #00BCD4;
+    cursor: pointer;
+    float: left;
+  }
+  .buttonReject {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 13px;
+    padding: 6px;
+    margin-left: 20px;
+    color: white;
+    background: #FF4081;
+    cursor: pointer;
+    float: left;
+  }
 }

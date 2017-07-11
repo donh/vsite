@@ -29,6 +29,7 @@ export default function attestation(req) {
                 const {payload} = decodeToken(item.claim)
                 const {context} = payload
                 const {authority, expiryDate, gender, ID, issueDate, name, userProxy} = context
+                claim.claimID = item.claimID;
                 claim.name = name;
                 claim.ID = ID;
                 claim.gender = gender;
