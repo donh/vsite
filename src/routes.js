@@ -5,6 +5,7 @@ import {
     App,
     About,
     Attestation,
+    Authorization,
     Chat,
     Claim,
     Home,
@@ -51,6 +52,7 @@ export default (store) => {
       { /* Routes */ }
       <Route path="about" component={About}/>
       <Route path="attestation" component={Attestation}/>
+      <Route path="authorization" component={Authorization}/>
       <Route path="claim" component={Claim}/>
       <Route path="login" component={Login}/>
       <Route path="pagination" component={Pagination}/>

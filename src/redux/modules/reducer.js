@@ -6,6 +6,7 @@ import { pagination } from 'violet-paginator';
 
 import attestation from './attestation';
 import auth from './auth';
+import authorization from './authorization';
 import claim from './claim';
 import counter from './counter';
 import {reducer as form} from 'redux-form';
@@ -17,6 +18,7 @@ export default combineReducers({
   routing: routerReducer,
   reduxAsyncConnect,
   attestation,
+  authorization,
   auth,
   claim,
   form,

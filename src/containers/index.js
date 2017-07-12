@@ -1,5 +1,6 @@
 export App from './App/App';
 export Attestation from './Attestation/Attestation';
+export Authorization from './Authorization/Authorization';
 export Chat from './Chat/Chat';
 export Claim from './Claim/Claim';
 export Home from './Home/Home';

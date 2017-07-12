@@ -1,5 +1,8 @@
-export attestation from './attestation';
 export attest from './attest';
+export attestation from './attestation';
+// export {authorization, authorizationToken} from './authorization';
+export authorization from './authorization';
+export authorizationToken from './authorizationToken';
 export claim from './claim';
 export loadAuth from './loadAuth';
 export loadInfo from './loadInfo';
