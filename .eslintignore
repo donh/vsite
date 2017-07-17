@@ -1,0 +1,5 @@
+lib/ConnectCore.js
+lib/uportSubprovider.js
+webpack/*
+karma.conf.js
+tests.webpack.js
