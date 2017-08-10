@@ -1,0 +1,21 @@
+._pagination {
+  text-align: center;
+  list-style: none;
+  padding: 0;
+  ._pagination__page {
+    display: inline-block;
+    color: #8962D9;
+    height: 34px;
+    padding: 7px 12px 9px;
+    cursor: pointer;
+  }
+  ._pagination__page + .pagination__pag {
+    border-left: 1px solid rgba(black, .15);
+  }
+  ._pagination__page--selected {
+    cursor: default;
+    background: #8962D9;
+    border: 1px solid #6B5499;
+    color: white;
+  }
+}
