@@ -1,0 +1,19 @@
+{
+  "host": "http://localhost",
+  "attest": "http://localhost/api/example",
+  "attestant": "ATTESTANT",
+  "attestantURL": "http://example.attestant.com",
+  "aud": "vport.example.server",
+  "authorizationToken": "http://localhost/api/example",
+  "claim": "http://localhost/api/example",
+  "getClaims": "http://localhost/api/example",
+  "clientID": "clientIDexample",
+  "clientName": "CLIENT",
+  "iss": "vport.example.client",
+  "privateKey": "privateKeyExample",
+  "publicKey": "publicKeyExample",
+  "register": "http://localhost/api/example",
+  "server": "http://localhost",
+  "socket": "/api/example",
+  "token": "http://localhost/api/example"
+}
