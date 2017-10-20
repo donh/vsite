@@ -1,15 +1,15 @@
 import page from 'page';
 import qs from 'qs';
 
-const ATTEST = 'vchain/attestation/ATTEST';
-const ATTEST_SUCCESS = 'vchain/attestation/ATTEST_SUCCESS';
-const ATTEST_FAIL = 'vchain/attestation/ATTEST_FAIL';
-const GET_CLAIMS = 'vchain/attestation/GET_CLAIMS';
-const GET_CLAIMS_SUCCESS = 'vchain/attestation/GET_CLAIMS_SUCCESS';
-const GET_CLAIMS_FAIL = 'vchain/attestation/GET_CLAIMS_FAIL';
-const ATTEST_URL = 'vchain/attestation/ATTEST_URL';
-const ATTEST_URL_SUCCESS = 'vchain/attestation/ATTEST_URL_SUCCESS';
-const ATTEST_URL_FAIL = 'vchain/attestation/ATTEST_URL_FAIL';
+const ATTEST = 'idhub/attestation/ATTEST';
+const ATTEST_SUCCESS = 'idhub/attestation/ATTEST_SUCCESS';
+const ATTEST_FAIL = 'idhub/attestation/ATTEST_FAIL';
+const GET_CLAIMS = 'idhub/attestation/GET_CLAIMS';
+const GET_CLAIMS_SUCCESS = 'idhub/attestation/GET_CLAIMS_SUCCESS';
+const GET_CLAIMS_FAIL = 'idhub/attestation/GET_CLAIMS_FAIL';
+const ATTEST_URL = 'idhub/attestation/ATTEST_URL';
+const ATTEST_URL_SUCCESS = 'idhub/attestation/ATTEST_URL_SUCCESS';
+const ATTEST_URL_FAIL = 'idhub/attestation/ATTEST_URL_FAIL';
 
 const initialState = {
   attested: false,

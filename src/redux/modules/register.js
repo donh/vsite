@@ -1,6 +1,6 @@
-const SAVE = 'vchain/register/SAVE';
-const SAVE_SUCCESS = 'vchain/register/SAVE_SUCCESS';
-const SAVE_FAIL = 'vchain/register/SAVE_FAIL';
+const SAVE = 'idhub/register/SAVE';
+const SAVE_SUCCESS = 'idhub/register/SAVE_SUCCESS';
+const SAVE_FAIL = 'idhub/register/SAVE_FAIL';
 
 const initialState = {
   registration: {},

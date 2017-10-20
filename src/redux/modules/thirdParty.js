@@ -1,8 +1,8 @@
 import qs from 'qs';
 
-const THIRDPARTY = 'vchain/thirdParty/THIRDPARTY';
-const THIRDPARTY_SUCCESS = 'vchain/thirdParty/THIRDPARTY_SUCCESS';
-const THIRDPARTY_FAIL = 'vchain/thirdParty/THIRDPARTY_FAIL';
+const THIRDPARTY = 'idhub/thirdParty/THIRDPARTY';
+const THIRDPARTY_SUCCESS = 'idhub/thirdParty/THIRDPARTY_SUCCESS';
+const THIRDPARTY_FAIL = 'idhub/thirdParty/THIRDPARTY_FAIL';
 
 const initialState = {
   query: {}

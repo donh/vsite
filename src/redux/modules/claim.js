@@ -1,6 +1,6 @@
-const CLAIM_TOKEN = 'vchain/claim/CLAIM_TOKEN';
-const CLAIM_TOKEN_SUCCESS = 'vchain/claim/CLAIM_TOKEN_SUCCESS';
-const CLAIM_TOKEN_FAIL = 'vchain/claim/CLAIM_TOKEN_FAIL';
+const CLAIM_TOKEN = 'idhub/claim/CLAIM_TOKEN';
+const CLAIM_TOKEN_SUCCESS = 'idhub/claim/CLAIM_TOKEN_SUCCESS';
+const CLAIM_TOKEN_FAIL = 'idhub/claim/CLAIM_TOKEN_FAIL';
 
 const initialState = {
   loading: true,

@@ -1,11 +1,11 @@
 import qs from 'qs';
 
-const AUTHORIZATION_TOKEN = 'vchain/authorization/AUTHORIZATION_TOKEN';
-const AUTHORIZATION_TOKEN_SUCCESS = 'vchain/authorization/AUTHORIZATION_TOKEN_SUCCESS';
-const AUTHORIZATION_TOKEN_FAIL = 'vchain/authorization/AUTHORIZATION_TOKEN_FAIL';
-const AUTHORIZATION = 'vchain/authorization/AUTHORIZATION';
-const AUTHORIZATION_SUCCESS = 'vchain/authorization/AUTHORIZATION_SUCCESS';
-const AUTHORIZATION_FAIL = 'vchain/authorization/AUTHORIZATION_FAIL';
+const AUTHORIZATION_TOKEN = 'idhub/authorization/AUTHORIZATION_TOKEN';
+const AUTHORIZATION_TOKEN_SUCCESS = 'idhub/authorization/AUTHORIZATION_TOKEN_SUCCESS';
+const AUTHORIZATION_TOKEN_FAIL = 'idhub/authorization/AUTHORIZATION_TOKEN_FAIL';
+const AUTHORIZATION = 'idhub/authorization/AUTHORIZATION';
+const AUTHORIZATION_SUCCESS = 'idhub/authorization/AUTHORIZATION_SUCCESS';
+const AUTHORIZATION_FAIL = 'idhub/authorization/AUTHORIZATION_FAIL';
 
 const initialState = {
   callback: '',
