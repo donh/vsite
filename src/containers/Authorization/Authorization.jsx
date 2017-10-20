@@ -47,7 +47,7 @@ export default class Authorization extends Component {
     return (
       <div className={styles.loginPage + ' container'}>
         <h1>Authorization</h1>
-        <Helmet title="authorization" />
+        <Helmet title="Authorization" />
         <div className={styles.centered}>
           <img src={QR} alt="Authorization QR code" />
         </div>
