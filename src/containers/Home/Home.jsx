@@ -39,7 +39,7 @@ export default class Home extends Component {
 
         <div className="container">
           <header>
-            <h1>vChain Demo</h1>
+            <h1>IDHub Demo</h1>
           </header>
           <hr />
         </div>

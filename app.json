@@ -1,11 +1,10 @@
 {
-  "name": "vchain",
-  "description": "The hottest blockchain on the earth.",
+  "name": "IDHub",
+  "description": "One identity, one world.",
   "repository": "https://github.com/donh/vsite",
   "logo": "https://raw.githubusercontent.com/donh/vsite/master/static/logo.png",
   "keywords": [
-    "vChain",
-    "IDhub",
+    "IDHub",
     "digital identity",
     "blockchain",
     "react",

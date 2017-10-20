@@ -1,17 +1,16 @@
 {
   "name": "vsite",
-  "description": "vChain demo site",
+  "description": "IDHub demo site",
   "author": "Don Hsieh <don@cepave.com> (http://github.com/donh)",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/donh/vsite"
   },
   "homepage": "https://github.com/donh/vsite",
   "keywords": [
-    "vChain",
-    "IDhub",
+    "IDHub",
     "digital identity",
     "blockchain",
     "react",
