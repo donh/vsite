@@ -6,7 +6,7 @@ import PrettyError from 'pretty-error';
 import SocketIo from 'socket.io';
 import config from '../src/config';
 import * as actions from './actions/index';
-import { mapUrl } from './utils/url.js';
+import { mapUrl } from './utils/url';
 
 const app = express();
 const pretty = new PrettyError();
