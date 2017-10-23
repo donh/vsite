@@ -62,18 +62,19 @@ export default class ThirdParty extends Component {
 
 class AuthorizationForm extends Component {
   static propTypes = {
-    fields: PropTypes.object.isRequired,
+    fields: PropTypes.array.isRequired,
     query: PropTypes.object.isRequired
   }
   render() {
-    const { fields: { name, ID, gender, issueDate, expiryDate, authority }, query } = this.props;
+    const { fields, query } = this.props;
+    const { name, ID, gender, issueDate, expiryDate, authority } = query;
     const renderInput = (field, label) =>
       <div className={'form-group'}>
-        <label htmlFor={field.name} className="col-sm-2">{label}</label>
+        <label htmlFor={field} className="col-sm-2">{label}</label>
         <div className={`col-sm-8 ${styles.inputGroup}`}>
           <input
-            ref={field.name} value={query[field.name]} type="text"
-            className="form-control" id={field.name} {...field}
+            ref={field} value={field} type="text"
+            className="form-control" id={field} readOnly
           />
         </div>
       </div>;
